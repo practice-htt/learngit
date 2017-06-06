@@ -1,6 +1,8 @@
 
 # 最近邻搜索 (nearest neighbor search)
 
+<span id = "跳">跳转</span>
+
 ## <span id = "目录">目录t</span>
 
 [最近邻搜索简介和算法](#一、最近邻搜索简介和算法)
@@ -4390,3 +4392,6 @@ plt.tight_layout()
 + 在Wikipedia上的数值实验
     3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
     6. [Programming Assignment2：LSH](#Assignment2)
+
+[调回开头](#跳)  
+[跳回开头](#跳转)
