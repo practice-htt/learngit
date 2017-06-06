@@ -77,7 +77,7 @@ Return K篇最相似的文章：$X^{NN}$
 - 怎样表示每篇文章，以便计算
 - 怎么衡量文章之间的距离
 
-## <span id = "二">二、数据表示和距离衡量标准的重要性</span>
+<h2 id = "二">二、数据表示和距离衡量标准的重要性</h2>
 
 ### 1. 文章表示
 
@@ -136,7 +136,7 @@ TF-IDF = tf * idf
 其他，还有诸如Mahalanobis, rank-based, correlation-based, Manhattan, Jaccard, Hamming等等各种距离度量方法，有兴趣的可以自行查看。  
 当然，也可以组合使用这些度量方法，对特征的不同子集应用不同的测量，然后根据具体问题设置不同的权重。
 
-## <span id = "Assignment1">Programming Assignment1</span>
+<h2 id = "Assignment1">Programming Assignment1</h2>
 
 [返回目录](#目录t)
 
@@ -2043,7 +2043,7 @@ model2_tf_idf.query(obama, label='name', k=10)
 
 发现这条tweet和Obama的距离，除了比不过Joe Biden外，都要小。但是这不能说明tweet就和Obama更相关。在这个例子中，完全忽略长度是不合理的。所以实际上，要有最大和最小文章长度。
 
-## <span id = "KD-tree">三、用KD-树(KD-trees)扩大K-NN搜索规模</span>
+<h2 id = "KD-tree">三、用KD-树(KD-trees)扩大K-NN搜索规模</h2>
 
 ### brute force搜索的时间复杂度
 
@@ -2123,7 +2123,7 @@ KD-tree的搜索效率和分割空间有很大的关系，假设最终得到的�
 
 通过KD-树来近似，r表示当前最近距离，用$\frac{r}{\alpha}$作为约束来删除点。即，如果我们找到了距离是r的最近邻，那么不会有更近的点到query point的距离小于$\frac{r}{\alpha}$。这样，我们节省了时间因为删除了更多的点，而精确度差不多,因为计算距离的时候本来就有许多噪声。
 
-## <span id = "LSH">四、LSH(Locality Sensitive Hashing)求近似最近邻</span>
+<h2 id = "LSH">四、LSH(Locality Sensitive Hashing)求近似最近邻</h2>
 
 经过讨论，KD-树在处理高维数据时效率低，而且构造KD-树比较麻烦；同时为了节省时间可以不要求精确的解，接下来介绍一种可以控制正确率的近似求解方法--**LSH**。
 
@@ -2167,7 +2167,7 @@ LSH的思路非常简单，但是这条分割线怎么选才合理呢？假设�
 
 对于高维情况，可以粗略地估计一下构造哈希表的时间复杂度：计算每个点的值，假设d维数据，i个划分超平面，进行$d\times i$次乘法。同时因为实际一篇文章中只有有限的不同词汇，所以是一个稀疏向量乘法，那么实际耗时会小得多。在进行多次查询时，这个时间是可以忍受的。
 
-## <span id = "Assignment2">Programming Assignment2</span>
+<h2 id = "Assignment2">Programming Assignment2</h2>
 
 [返回目录](#目录)
 
