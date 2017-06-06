@@ -1,11 +1,7 @@
 
 # 最近邻搜索 (nearest neighbor search)
 
-<span id = "跳">跳转</span>
-
-## <span id = "目录">目录t</span>
-
-[最近邻搜索简介和算法](#一、最近邻搜索简介和算法)
+## <span id = "目录">目录</span>
 
 + 最近邻搜索基础
     1. [最近邻搜索简介和算法](#一)
@@ -17,50 +13,50 @@
     3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
     6. [Programming Assignment2：LSH](#Assignment2)
 
-## <h2 id = "一">一、最近邻搜索简介和算法</h2>
+<h id = "一">一、最近邻搜索简介和算法</h>
 
 ### 1. 问题背景
 
 我们通过解决检索兴趣相关文章的问题来讨论最近邻搜索。首先我们来描述一下文献检索这个问题，假设你正在阅读一篇文章，比如一篇关于体育报道的新闻。   
 
-** 目标：** 找到和当前阅读的文章最相似的文章  
-** 两个问题：**
+**目标:** 找到和当前阅读的文章最相似的文章  
+**两个问题:**
 
 - 怎样定义相似性 (similarity)
 - 怎么从一大堆文献中搜索相似文章
 
 ### 2. 最近邻搜索 (NN Search)
 
-** 1-最近邻搜索 (1-NN search) **
+**1-最近邻搜索 (1-NN search)**
 
 假设我们已经对所有要被检索的文章定义了一个空间，空间中每篇文章的距离用相似性来描述。然后我们要找到空间中和当前阅读文章(query article)最相似的文章(1-NN)，或者最相似的文章集合。
 
 ![文章距离空间](image/article_space.JPG "文章距离空间")
 
 ***
-** 1-最近邻算法 (1-NN algorithm) **
+**1-最近邻算法 (1-NN algorithm)**
 ***
-** 输入：** 当前阅读的文章：$X_q$
+**输入:** 当前阅读的文章：$X_q$
             文集：$X_1,X_2,\cdots,X_N$   
-** 输出：** 最相似的文章：$X^{NN}$  
+**输出:** 最相似的文章：$X^{NN}$  
 其中，$X^{NN}$ = arg$\min\limits_{i}$ distance$(X_i,X_q)$  
-初始化 ** Dist2NN = $\infty, X^{NN}$ = $\varnothing$ **  
+初始化 **Dist2NN = $\infty, X^{NN}$ = $\varnothing$**  
 For $i=1,2,\cdots,N$  
 　　计算：$\delta = distance(X_i,X_q)$  
     if $\delta<$**Dist2NN**  
     　　令 $X^{NN}=X_i$  
-          　　令** Dist2NN**=$\delta$  
+          　　令**Dist2NN**=$\delta$  
 Return 最相似文章：$X^{NN}$
 ***
 
 ***
-** K-最近邻算法 (K-NN algorithm) **
+**K-最近邻算法 (K-NN algorithm)**
 ***  
-** 输入：** 当前阅读的文章：$X_q$
+**输入:** 当前阅读的文章：$X_q$
              文集：$X_1,X_2,\cdots,X_N$   
-** 输出：** 最相似的文章列表(list)：$X^{NN}$  
+**输出:** 最相似的文章列表(list)：$X^{NN}$  
 其中，$X^{NN}$ = $\{X^{NN_1},\cdots,X^{NN_k}\}$，对所有不在$X^{NN}$中的$X_i$，都有$distance(X_i,X_q)\ge\max\limits_{X^{NN_j},j=1,\cdots,k}distance(X^{NN_j},X_q)$  
-初始化 ** Dist2KNN ** = sort$(\delta_1,\cdots,\delta_k)$，$X^{NN}=sort(X_1,\cdots,X_k)$     
+初始化 **Dist2KNN** = sort$(\delta_1,\cdots,\delta_k)$，$X^{NN}=sort(X_1,\cdots,X_k)$     
 For $i=k+1,\cdots,N$  
 　　计算：$\delta = distance(X_i,X_q)$  
     if $\delta<$**Dist2KNN**[K]  
@@ -81,7 +77,7 @@ Return K篇最相似的文章：$X^{NN}$
 
 ### 1. 文章表示
 
-** 简单词数统计(word counts)表示： **
+**简单词数统计(word counts)表示：**
 
 - 忽略词的语序
 - 统计每个词出现的次数  
@@ -95,7 +91,7 @@ $X_q=$ {'Carlos':1, 'the':2, 'Emily':1, 'soccer':1, 'calls':2, 'sport':2, 'futbo
 
 显然，常用词对判断两篇文章的相似性没有什么意义，而它们往往又大量出现，所以改进的表示方法中应该增加重要稀有词的权重。  
 
-** TF-IDF 文章表示 (Term Frequency Inverse Document Frequency)：**
+**TF-IDF 文章表示 (Term Frequency Inverse Document Frequency)：**
 强调重要稀有词：
 + 在当前文章中经常出现：
 Term Frequency(tf) = 词数
@@ -113,7 +109,7 @@ TF-IDF = tf * idf
   在这种情况下，一种做法是将权重表示成特征散度的函数，比如，
   第j个特征的权重 = $\frac{1}{\max\limits_{i}(X_i[j])-\min\limits_{i}(X_i[j])}$
   
-** Scaled-Euclidean: ** $distance(X_i,X_q)=\sqrt{a_1(X_i[1]-X_q[1])^2+\cdots+a_d(X_i[d]-X_q[d])^2}$，其中，$a_j,j=1,\cdots,d$即为特征的权重。  
+**Scaled-Euclidean: ** $distance(X_i,X_q)=\sqrt{a_1(X_i[1]-X_q[1])^2+\cdots+a_d(X_i[d]-X_q[d])^2}$，其中，$a_j,j=1,\cdots,d$即为特征的权重。  
 特别地，$a_j$取0或1时，就是特征选择的效果。
 
 如何设置权重，或者特征选择/[特征工程](https://www.zhihu.com/question/29316149 "特征工程-知乎")（Feature Selection/Feature Engineering)非常重要但同时也很困难，对不同的问题要具体分析。  
@@ -138,7 +134,7 @@ TF-IDF = tf * idf
 
 <h2 id = "Assignment1">Programming Assignment1</h2>
 
-[返回目录](#目录t)
+[返回目录](#目录)
 
 1. [准备：工具包、加载数据](#准备)
 2. [初步实现最近邻搜索：word count](#word count)
@@ -156,7 +152,7 @@ TF-IDF = tf * idf
 + 用简单词数统计和TF-IDF来表示文章的不同
 + 不同的距离度量方式，有怎样不同的效果
 
-### <span id = "准备">相关工具包</span>
+<h3 id = "准备">相关工具包</h3>
 
 下面的代码在python和[graphlab create](https://turi.com/learn/ "安装graphlab")工具包的环境下运行。
 
@@ -260,7 +256,7 @@ wiki
 
 
 
-### <span id = "word count">提取简单字数统计向量</span>
+<h3 id = "word count">提取简单字数统计向量</h3>
 
 用graphlab进行简单计算统计，并作为wiki的一列添加。
 
@@ -765,7 +761,7 @@ combined_words
 
 
 
-**注意：** **join**操作只是简单地连接相同的列，并没有强制排序，为了看的更清楚，对表进行**sort**操作。
+**注意:join**操作只是简单地连接相同的列，并没有强制排序，为了看的更清楚，对表进行**sort**操作。
 
 
 ```python
@@ -837,7 +833,7 @@ combined_words.sort('Obama', ascending=False)
 
 
 
-**小问题： **在同时出现在Obama和Barrio文章的单词中，找到在Obama文章中最常出现的5个。那么在数据集，也就是所有文章中，包含了这5个词的有多少篇？
+**小问题：**在同时出现在Obama和Barrio文章的单词中，找到在Obama文章中最常出现的5个。那么在数据集，也就是所有文章中，包含了这5个词的有多少篇？
 
 提示：
 
@@ -949,7 +945,7 @@ combined_words['word'][:10]
 
 **注意：**即使通用词占了很大的比例，在特别的政治词汇中常出现的词，比如‘president'还是体现出来了。这也就是为什么在反馈和Obama相关的文章中列出的都是政治家而不是音乐家之类的。接下来，我们用TF-IDF来表示文章，将会更强调重要的稀有词的作用。
 
-### <span id = "TF-IDF">用 **TF-IDF**来改进</span>
+<h3 id = "TF-IDF">用 **TF-IDF**来改进</h3>
 
 通过上面的展示，发现Obama和Barrio的相似性大多来源于通用词的重复，下面用TF-IDF来表示文章，以强调文章中的重要稀有词，同样搜索和Obama最相关的10篇文章。
 
@@ -1314,7 +1310,7 @@ len(wiki[wiki['has_top_words']==True])
 
 注意到，用TF-IDF来表示文章，计算距离时排除了通用词的噪声干扰，所以范围缩小了很多。
 
-### <span id = "distance">选择距离度量方法</span>
+<h3 id = "distance">选择距离度量方法</h3>
 
 观察返回的相关文章列表，发现Joe Biden，Obama的在两届总统选举中的竞选搭档，竟然不在tf-idf返回的结果中。我们来看一下这是为什么。首先，计算一下这二者的TF-IDF之间的距离。
 
@@ -2184,7 +2180,7 @@ LSH的思路非常简单，但是这条分割线怎么选才合理呢？假设�
 + 对不同的文章，比较**LSH**和**brute force**的准确率和用时
 + 调整算法的参数，探讨对准确性的影响
 
-### <span id = "准备">导入包并检查环境</span>
+<h3 id = "准备">导入包并检查环境</h3>
 
 
 ```python
@@ -2478,7 +2474,7 @@ print 'Check passed correctly!'
     Check passed correctly!
     
 
-### <span id = "训练">训练一个LSH模型</span>
+<h3 id = "训练">训练一个LSH模型</h3>
 
 LSH通过随机地将数据集划分到不同的区域，高效地完成近邻搜索。这里我们实现LSH的一种常用形式--random binary projection，逼近cosine distance。
 
@@ -2719,7 +2715,7 @@ else:
 
 下面的实践，如无特别说明，都在这个模型上完成。
 
-### <span id = "区域">观察区域</span>
+<h3 id = "区域">观察区域</h3>
 
 
 选一些文章，看看它们落在哪个区域。
@@ -2955,7 +2951,7 @@ for doc_id in doc_ids:
 
 **启示：**上述的观察结果说明，在LSH中相似的数据大体上是趋于落在相邻区域的，但是在高维空间中，相似点可能被随机向量分到不同的区域，而不相似的在同一区。**所以对一篇当前阅读文章查询，有必要考虑所有邻近区域，根据实际的距离排序。**
 
-### <span id = "半径">在训练的LSH模型上搜索 最近邻</span>
+<h3 id = "半径">在训练的LSH模型上搜索 最近邻</h3>
 
 首先，对LSH进行搜索，顺序是这样的：
 
@@ -4275,7 +4271,7 @@ plt.tight_layout()
 
 发现Obama作为query point的观察结果可以推广到整个数据集上。
 
-### <span id = "向量">随机向量的个数的影响</span>
+<h3 id = "向量">随机向量的个数的影响</h3>
 
 接下来，我们看剩下的这个变量，随机向量的个数，对LSH效果的影响。固定搜索半径：3，对5-20个随机向量，运行LSH。要花一段时间。
 
@@ -4380,18 +4376,3 @@ plt.tight_layout()
 
 
 通过图表发现，随着随机向量数目的增加，搜索时间降低，因为每一个区域含有更少的数据点；但是近邻点的平均距离离query point更远。另一方面，当随机向量数目少的时候，结果更接近brute-force搜索：在一个区域中有很多店，所以对query point在的区域进行搜索得到很多点；这样包括邻近区域时，可能就是搜索几乎所有点，和brute-force搜索一样。
-
-[最近邻搜索简介和算法](#一、最近邻搜索简介和算法)
-
-+ 最近邻搜索基础
-    1. [最近邻搜索简介和算法](#一)
-    2. [数据表示和距离衡量标准的重要性](#二)
-+ 快速最近邻搜索
-    4. [KD-树：中低维和近似最近邻](#KD-tree)
-    5. [LSH：高维上的近似最近邻](#LSH)
-+ 在Wikipedia上的数值实验
-    3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
-    6. [Programming Assignment2：LSH](#Assignment2)
-
-[调回开头](#跳)  
-[跳回开头](#跳转)
