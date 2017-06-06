@@ -1,4 +1,3 @@
-
 # 最近邻搜索 (nearest neighbor search)
 
 ## <span id = "目录">目录</span>
@@ -7,13 +6,13 @@
     1. [最近邻搜索简介和算法](#一)
     2. [数据表示和距离衡量标准的重要性](#二)
 + 快速最近邻搜索
-    4. [KD-树：中低维和近似最近邻](#KD-tree)
-    5. [LSH：高维上的近似最近邻](#LSH)
+    4. [KD-树：中低维和近似最近邻](#KD-tree)  
+    5. [LSH：高维上的近似最近邻](#LSH)  
 + 在Wikipedia上的数值实验
-    3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
-    6. [Programming Assignment2：LSH](#Assignment2)
+    3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)  
+    6. [Programming Assignment2：LSH](#Assignment2)  
 
-<h id = "一">一、最近邻搜索简介和算法</h>
+<h2 id = "一">一、最近邻搜索简介和算法</h2>
 
 ### 1. 问题背景
 
