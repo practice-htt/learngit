@@ -1,7 +1,7 @@
 
 # 最近邻搜索 (nearest neighbor search)
 
-## <span id = "目">目录</span>
+## <span id = "目录">目录</span>
 
 + 最近邻搜索基础
     1. [最近邻搜索简介和算法](#一)
@@ -134,7 +134,7 @@ TF-IDF = tf * idf
 
 ## <span id = "Assignment1">Programming Assignment1</span>
 
-[返回目录](#目)
+[返回目录](#目录)
 
 1. [准备：工具包、加载数据](#准备)
 2. [初步实现最近邻搜索：word count](#word count)
@@ -2165,7 +2165,7 @@ LSH的思路非常简单，但是这条分割线怎么选才合理呢？假设�
 
 ## <span id = "Assignment2">Programming Assignment2</span>
 
-[返回目录](#目录)
+[返回目录](#目)
 
 1. [准备：包、载入数据，提取TF-IDF矩阵](#准备)
 2. [训练LSH模型](#训练)
