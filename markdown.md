@@ -1,7 +1,7 @@
 
 # 最近邻搜索 (nearest neighbor search)
 
-## <span id = "目录t">目录</span>
+## <span id = "目录">目录t</span>
 
 [最近邻搜索简介和算法](#一、最近邻搜索简介和算法)
 
