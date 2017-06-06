@@ -13,7 +13,7 @@
     3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
     6. [Programming Assignment2：LSH](#Assignment2)
 
-## [toc]<span id = "一">一、最近邻搜索简介和算法</span>
+## <span id = "一">一、最近邻搜索简介和算法</span>
 
 ### 1. 问题背景
 
@@ -4376,3 +4376,12 @@ plt.tight_layout()
 
 
 通过图表发现，随着随机向量数目的增加，搜索时间降低，因为每一个区域含有更少的数据点；但是近邻点的平均距离离query point更远。另一方面，当随机向量数目少的时候，结果更接近brute-force搜索：在一个区域中有很多店，所以对query point在的区域进行搜索得到很多点；这样包括邻近区域时，可能就是搜索几乎所有点，和brute-force搜索一样。
++ 最近邻搜索基础
+    1. [最近邻搜索简介和算法](#一)
+    2. [数据表示和距离衡量标准的重要性](#二)
++ 快速最近邻搜索
+    4. [KD-树：中低维和近似最近邻](#KD-tree)
+    5. [LSH：高维上的近似最近邻](#LSH)
++ 在Wikipedia上的数值实验
+    3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
+    6. [Programming Assignment2：LSH](#Assignment2)
