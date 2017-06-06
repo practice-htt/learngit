@@ -17,7 +17,7 @@
     3. [Programming Assignment1：不同的数据表示和距离标准](#Assignment1)
     6. [Programming Assignment2：LSH](#Assignment2)
 
-## <span id = "一">一</span>、最近邻搜索简介和算法
+## <h2 id = "一">一、最近邻搜索简介和算法</h2>
 
 ### 1. 问题背景
 
